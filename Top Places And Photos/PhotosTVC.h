@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSArray *photos;
 @property (nonatomic, strong) NSString *navTitle;
 @property (nonatomic, strong) id place;
+@property (nonatomic) BOOL fromDB;
 
 - (void)setupView;
 - (IBAction)fetchPhotos;

@@ -9,6 +9,7 @@
 #import "ImageViewController.h"
 #import "RequestManager.h"
 #import "FlickrFetcher.h"
+#import "DataManager.h"
 
 @interface ImageViewController () <UIScrollViewDelegate, UISplitViewControllerDelegate>
 @property (nonatomic, strong) RequestManager *requestManager;
@@ -75,7 +76,7 @@
 {
     [self.spinner startAnimating];
     [self.requestManager getImageByPhoto:self.photo format:FlickrPhotoFormatLarge withCompletionBlock:^(id imageData) {
-        self.image = [UIImage imageWithData:imageData];        
+        self.image = [UIImage imageWithData:imageData];
     }];
 }
 

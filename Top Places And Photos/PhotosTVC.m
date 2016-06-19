@@ -9,9 +9,11 @@
 #import "PhotosTVC.h"
 #import "RequestManager.h"
 #import "ImageViewController.h"
+#import "DataManager.h"
 
 @interface PhotosTVC ()
 @property (nonatomic, strong) RequestManager *requestManager;
+@property (nonatomic, strong) DataManager *dbManager;
 @end
 
 @implementation PhotosTVC
@@ -22,6 +24,11 @@
         _requestManager = [[RequestManager alloc] init];
     }
     return _requestManager;
+}
+
+- (DataManager *)dbManager
+{
+    return [DataManager sharedInstance];
 }
 
 - (NSString *)navTitle
@@ -35,17 +42,35 @@
 
 - (IBAction)fetchPhotos
 {
-    [self.spinner beginRefreshing];
-    [self.requestManager requestPhotosForTopPlace:[self.place valueForKey:@"place"] withCompletionBlock:^(NSArray *array) {
-        self.photos = array;
+    if (self.fromDB) {
+        self.photos = [self.dbManager retrievePhotos];
         [self.spinner endRefreshing];
         [self.tableView reloadData];
-    }];
+    }
+    else {
+        [self.spinner beginRefreshing];
+        [self.requestManager requestPhotosForTopPlace:[self.place valueForKey:@"place"] withCompletionBlock:^(NSArray *array) {
+            self.photos = array;
+            [self.spinner endRefreshing];
+            [self.tableView reloadData];
+        }];
+    }    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSArray *vCs = self.navigationController.viewControllers;
+    
+    if ([vCs.firstObject isMemberOfClass:[PhotosTVC class]]) {
+        self.fromDB = YES;
+    }
+    
+    if (self.fromDB) {
+        self.navigationItem.title = @"My Top Photos";
+        [self fetchPhotos];
+    }
     [self setupView];
 }
 
@@ -74,6 +99,11 @@
             ImageViewController *destIVC = (ImageViewController *)segue.destinationViewController;
             destIVC.navTitle = [[self.photos objectAtIndex:indexPath.row] valueForKey:@"title"];
             destIVC.photo = [self.photos objectAtIndex:indexPath.row];
+            
+            if (!self.fromDB) {
+                [self.dbManager savePhoto:[self.photos objectAtIndex:indexPath.row]];
+            }
+            
             [destIVC fetchPhoto];
         }
     }

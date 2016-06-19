@@ -10,4 +10,8 @@
 
 @interface DataManager : NSObject
 
++ (instancetype)sharedInstance;
+- (void)savePhoto:(id)photo;
+- (NSArray *)retrievePhotos;
+
 @end

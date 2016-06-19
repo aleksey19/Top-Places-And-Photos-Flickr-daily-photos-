@@ -21,12 +21,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    UITabBarController *tabBarVC = (UITabBarController *)self.window.rootViewController;
-    
-    NSArray *splitVCs = tabBarVC.viewControllers;
-    for (UISplitViewController *splitVC in splitVCs) {
-        splitVC.delegate = self;
-    }
+//    UITabBarController *tabBarVC = (UITabBarController *)self.window.rootViewController;
+//    
+//    NSArray *splitVCs = tabBarVC.viewControllers;
+//    for (UISplitViewController *splitVC in splitVCs) {
+//        splitVC.delegate = self;
+//    }
     
     return YES;
 }

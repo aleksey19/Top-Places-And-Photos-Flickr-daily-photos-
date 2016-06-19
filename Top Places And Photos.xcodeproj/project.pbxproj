@@ -18,6 +18,7 @@
 		5B5913601CEB057B00CE0B75 /* splitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B59135F1CEB057B00CE0B75 /* splitVC.m */; };
 		5B5913681CEB0E4F00CE0B75 /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5913671CEB0E4F00CE0B75 /* FlickrFetcher.m */; };
 		5B5B8BAA1CF05FE300DCA59C /* RequestManager+Sorter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B8BA91CF05FE300DCA59C /* RequestManager+Sorter.m */; };
+		5B6D861F1D1461410059C7B0 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D861E1D1461410059C7B0 /* DataManager.m */; };
 		5B79065F1CEB301D008E2A89 /* TopPlacesTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B79065E1CEB301D008E2A89 /* TopPlacesTVC.m */; };
 		5B7906631CEB31C7008E2A89 /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7906621CEB31C7008E2A89 /* RequestManager.m */; };
 		5BFDAE3C1CF203F200C29036 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BFDAE3B1CF203F200C29036 /* ImageViewController.m */; };
@@ -56,6 +57,8 @@
 		5B5913671CEB0E4F00CE0B75 /* FlickrFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrFetcher.m; sourceTree = "<group>"; };
 		5B5B8BA81CF05FE300DCA59C /* RequestManager+Sorter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "RequestManager+Sorter.h"; path = "Model/Request Manager/RequestManager+Sorter.h"; sourceTree = "<group>"; };
 		5B5B8BA91CF05FE300DCA59C /* RequestManager+Sorter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RequestManager+Sorter.m"; path = "Model/Request Manager/RequestManager+Sorter.m"; sourceTree = "<group>"; };
+		5B6D861D1D1461410059C7B0 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataManager.h; path = "Model/Data Manager/DataManager.h"; sourceTree = "<group>"; };
+		5B6D861E1D1461410059C7B0 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataManager.m; path = "Model/Data Manager/DataManager.m"; sourceTree = "<group>"; };
 		5B79065D1CEB301D008E2A89 /* TopPlacesTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopPlacesTVC.h; path = "View/Table Views/TopPlacesTVC.h"; sourceTree = "<group>"; };
 		5B79065E1CEB301D008E2A89 /* TopPlacesTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopPlacesTVC.m; path = "View/Table Views/TopPlacesTVC.m"; sourceTree = "<group>"; };
 		5B7906611CEB31C7008E2A89 /* RequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RequestManager.h; path = "Model/Request Manager/RequestManager.h"; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 		5B5912FD1CEAEA2900CE0B75 /* Top Places And Photos */ = {
 			isa = PBXGroup;
 			children = (
+				5B6D861C1D1460F60059C7B0 /* Data Manager */,
 				5B5913631CEB0DDE00CE0B75 /* Model */,
 				5B5913621CEB09B700CE0B75 /* View */,
 				5B5913071CEAEA2A00CE0B75 /* Main.storyboard */,
@@ -180,6 +184,15 @@
 			);
 			name = "Flickr Fetcher";
 			path = "Model/Flickr Fetcher";
+			sourceTree = "<group>";
+		};
+		5B6D861C1D1460F60059C7B0 /* Data Manager */ = {
+			isa = PBXGroup;
+			children = (
+				5B6D861D1D1461410059C7B0 /* DataManager.h */,
+				5B6D861E1D1461410059C7B0 /* DataManager.m */,
+			);
+			name = "Data Manager";
 			sourceTree = "<group>";
 		};
 		5B79065C1CEB2FE1008E2A89 /* Table Views */ = {
@@ -322,6 +335,7 @@
 				5B7906631CEB31C7008E2A89 /* RequestManager.m in Sources */,
 				5B5913031CEAEA2A00CE0B75 /* AppDelegate.m in Sources */,
 				5B5913681CEB0E4F00CE0B75 /* FlickrFetcher.m in Sources */,
+				5B6D861F1D1461410059C7B0 /* DataManager.m in Sources */,
 				5B5913001CEAEA2900CE0B75 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +470,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "aleksey.Top-Places-And-Photos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -467,6 +482,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "aleksey.Top-Places-And-Photos";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
