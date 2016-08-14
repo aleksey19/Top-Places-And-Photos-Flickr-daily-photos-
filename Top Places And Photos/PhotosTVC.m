@@ -57,20 +57,11 @@
     }    
 }
 
+#pragma mark - View life cycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSArray *vCs = self.navigationController.viewControllers;
-    
-    if ([vCs.firstObject isMemberOfClass:[PhotosTVC class]]) {
-        self.fromDB = YES;
-    }
-    
-    if (self.fromDB) {
-        self.navigationItem.title = @"My Top Photos";
-        [self fetchPhotos];
-    }
     [self setupView];
 }
 
@@ -82,9 +73,17 @@
 
 - (void)setupView
 {
-    self.navigationItem.title = [NSString stringWithString:self.navTitle];
-//    self.navigationController.title = @"Title";
-//    self.navigationController.topViewController.title = @"Title";
+    NSArray *vCs = self.navigationController.viewControllers;
+    
+    if ([vCs.firstObject isMemberOfClass:[PhotosTVC class]]) {
+        self.fromDB = YES;
+    }
+    
+    if (self.fromDB) {
+        self.navTitle = @"My Top Photos";
+        [self fetchPhotos];
+    }
+    
     [self.tableView reloadData];
 }
 

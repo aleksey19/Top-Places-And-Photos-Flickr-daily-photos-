@@ -37,7 +37,7 @@
 - (NSArray *)allContries
 {
     if (!_allContries) {
-        _allContries = [self.places allKeys];
+        _allContries = [[self.places allKeys] copy];
         _allContries = [_allContries sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     }
     
@@ -95,6 +95,12 @@
 {
     [super viewDidLoad];
     [self fetchTopPlaces];
+    [self setupView];
+}
+
+- (void)setupView
+{
+    self.title = @"Top Places";
 }
 
 - (IBAction)fetchTopPlaces

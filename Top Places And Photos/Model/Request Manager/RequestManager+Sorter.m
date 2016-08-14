@@ -16,7 +16,6 @@
     NSMutableDictionary *sortedPlacesByContries = [[NSMutableDictionary alloc] init];
     
     NSMutableArray *arrayTemp = [[NSMutableArray alloc] init];
-#warning Sometimes occurs: [NSNull length]: unrecognized selector sent to instance [NSTaggedPointerString isEqualToString:]
     if (topPlaces) {
         for (int i = 0; i < topPlaces.count; i++)
         {
@@ -38,8 +37,9 @@
             }
         }
     }
-    
-    completion(sortedPlacesByContries);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        completion(sortedPlacesByContries);
+    });
 }
 
 @end

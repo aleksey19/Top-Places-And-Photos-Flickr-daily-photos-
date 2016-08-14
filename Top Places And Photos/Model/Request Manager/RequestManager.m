@@ -36,7 +36,6 @@
 - (void)requestAndSortTopPlacesWithInfoWithCompletion:(CompletionBlock)completion
 {
     self.url = [FlickrFetcher URLforTopPlaces];
-#warning Check For leaks OF Info!
     [self.placesInfo removeAllObjects];
     
     dispatch_queue_t fetchQ = dispatch_queue_create("flickr fetch places", NULL);
@@ -56,8 +55,6 @@
                 
                 NSData *jsonResData = [NSData dataWithContentsOfURL:self.url];
                 NSDictionary *placeInfoListResult = [NSJSONSerialization JSONObjectWithData:jsonResData options:0 error:NULL];
-#warning *** set a breakpoint in malloc_error_break to debug 
-#warning [self.placesInfo addObject:placeInfoListResult];
                 [self.placesInfo addObject:placeInfoListResult];
                 
                 if (self.placesInfo.count == places.count)
@@ -90,7 +87,9 @@
         NSData *jsonResultData = [NSData dataWithContentsOfURL:self.url];
         NSDictionary *propertyListResult = [NSJSONSerialization JSONObjectWithData:jsonResultData options:0 error:NULL];
         NSArray *photos = [propertyListResult valueForKeyPath:@"photos.photo"];
-        completion(photos);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(photos);
+        });
     });
 }
 
